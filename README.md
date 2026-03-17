@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -71,3 +72,7 @@ export default defineConfig([
   },
 ])
 ```
+=======
+# TeamSpace-FE
+Built a web collaboration platform with features such as user workspaces, task management, and real-time updates.
+>>>>>>> 48af8dd (Initial commit)
