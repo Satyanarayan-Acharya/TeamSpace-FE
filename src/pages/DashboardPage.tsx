@@ -1,7 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
+import { useRole } from '@/hooks/useRole'
 
 export function DashboardPage() {
+    const { isAdmin } = useRole()
+
     const recentTasks = [
         { id: 1, title: 'Update homepage copy', status: 'In Progress', priority: 'High' },
         { id: 2, title: 'Fix navigation bug', status: 'Todo', priority: 'Medium' },
@@ -23,7 +26,7 @@ export function DashboardPage() {
         <div className="space-y-6">
             <div className="flex items-center justify-between">
                 <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-                <Button>Create Task</Button>
+                {isAdmin && <Button>Create Task</Button>}
             </div>
 
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
@@ -48,8 +51,8 @@ export function DashboardPage() {
                                             </div>
                                         </div>
                                         <span className={`px-2 py-1 text-xs font-medium rounded-full ${task.priority === 'High' ? 'bg-red-100 text-red-700' :
-                                                task.priority === 'Medium' ? 'bg-amber-100 text-amber-700' :
-                                                    'bg-green-100 text-green-700'
+                                            task.priority === 'Medium' ? 'bg-amber-100 text-amber-700' :
+                                                'bg-green-100 text-green-700'
                                             }`}>
                                             {task.priority}
                                         </span>
@@ -94,7 +97,7 @@ export function DashboardPage() {
                         </CardHeader>
                         <CardContent>
                             <div className="space-y-6 mt-4 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-200 before:to-transparent">
-                                {activities.map((activity, index) => (
+                                {activities.map((activity) => (
                                     <div key={activity.id} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
                                         <div className="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-blue-100 text-blue-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 relative z-10">
                                             <span className="text-xs font-bold">{activity.action.charAt(0)}</span>
